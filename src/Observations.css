@@ -1,0 +1,28 @@
+.observation-image {
+    height: 300px;
+}
+.button-group {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    color: white;
+    font-size: 16px;
+}
+
+.not-cheatgrass {
+    background-color: #f44336; 
+    color: black; 
+}
+
+.maybe-cheatgrass {
+    background-color: #ffeb3b; 
+    color: black; 
+}
+
+.cheatgrass {  
+    background-color: #4CAF50; 
+    color: black; 
+}
