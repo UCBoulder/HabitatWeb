@@ -49,6 +49,11 @@ function Observations() {
     }
 
     function handleVerificationRating(rating) {
+        //0- no 1- default 2- yes 3- maybe
+        //0 - delete reqeust, send delete request with observation ID and user id fields
+        //2 - send post request with observation id, user id, and VefificationRating =2 
+        //3 - send post request with observation id, user id, and VefificationRating =3 
+
         setVerificationRating(rating); // Update the rating state
 
         const payload = {
