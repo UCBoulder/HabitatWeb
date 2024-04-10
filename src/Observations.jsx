@@ -25,13 +25,16 @@ function Observations() {
     const [obsId, setObservationId] = useState(0);
 
     useEffect(() => { 
-        fetch("/src/assets/sample-response.json")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                setObservations(data);
-                setObs(data.Items[0]);
-            });
+        fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify",{
+            method: 'GET',
+            body: ""
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            setObservations(data);
+            setObs(data.Items[0]);
+        });
     }, []);
 
     function nextObservation() {
