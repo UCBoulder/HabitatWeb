@@ -26,8 +26,7 @@ function Observations() {
 
     useEffect(() => { 
         fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify",{
-            method: 'GET',
-            body: ""
+            method: 'GET'
         })
         .then(response => response.json())
         .then(data => {
