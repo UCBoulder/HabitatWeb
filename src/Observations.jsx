@@ -59,22 +59,48 @@ function Observations() {
         const payload = {
             ObservationID: obs.ObservationID.S,
             VerificationRating: rating,
+            UserID: obs.UserID.S,
         };
 
-        fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
+        if(verificationRating == 0){
+            fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            }) 
+            .then(response => response.json())
+            .then(data => {
+                setMessage("Success");
+            })
+            .catch((error) => {
+                setMessage("Error: " + error.message);
+            }); 
+        }
+        else if(verificationRating == 2 || verificationRating == 3){
+            fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(payload),
-        })
-        .then(response => response.json())
-        .then(data => {
-            setMessage("Success");
-        })
-        .catch((error) => {
-            setMessage("Error: " + error.message);
-        }); 
+            })
+            .then(response => response.json())
+            .then(data => {
+                setMessage("Success");
+            })
+            .catch((error) => {
+                setMessage("Error: " + error.message);
+            }); 
+
+            if(verificationRating == 2){
+                obs.VerificationRating = 2;
+            }
+            else if(verificationRating = 3){
+                obs.verificationRating = 3;
+            }
+        } 
     }
 
     return (
