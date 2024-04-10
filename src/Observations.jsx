@@ -26,6 +26,7 @@ function Observations() {
 
     useEffect(() => { 
         fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify",{
+<<<<<<< Updated upstream
             method: 'GET'
         })
         .then(response => response.json())
@@ -34,6 +35,17 @@ function Observations() {
             setObservations(data);
             setObs(data.Items[0]);
         });
+=======
+        method: 'GET',
+        mode: 'cors',
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        setObservations(data);
+        setObs(data.Items[0]);
+    });
+>>>>>>> Stashed changes
     }, []);
 
     function nextObservation() {
