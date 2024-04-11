@@ -26,11 +26,22 @@ function Observations() {
 
     useEffect(() => { 
         fetch("/src/assets/sample-response.json")
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) { 
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then(data => {
                 console.log(data);
                 setObservations(data);
-                setObs(data.Items[0]);
+                setObs(data.Items ? data.Items[0] : null);  // set field to null in error case
+            })
+            .catch(error => {
+                console.error("Fetching data failed:", error);
+
+                setObservations(null);
+                setObs(null);
             });
     }, []);
 
@@ -83,6 +94,7 @@ function Observations() {
                 <button className="btn cheatgrass" onClick={() => handleVerificationRating('2')}>Cheatgrass</button>
             </div>
             <div>
+                
                 <button disabled={obsId == 0} onClick={prevObservation}>Previous</button>
                 <button onClick={nextObservation}>Next</button>
             </div>
