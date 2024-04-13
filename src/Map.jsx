@@ -17,7 +17,6 @@ const Map = () => {
       },
       error => {
         console.error('Error getting current location:', error);
-        leafletMap.setView([38.5451, -106.9253], 13); // Gunnison, Colorado
       }
     );
 
@@ -60,3 +59,4 @@ const Map = () => {
 };
 
 export default Map;
+
