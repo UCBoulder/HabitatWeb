@@ -19,7 +19,8 @@ function Observations() {
                 }
             }
         },
-        "ObservationID": { "S": "" } 
+        "ObservationID": { "S": "" },
+        "VerificationRating" : {"N":""} 
     });
 
     const [obsId, setObservationId] = useState(0);
@@ -56,38 +57,46 @@ function Observations() {
         //0 - delete reqeust, send delete request with observation ID and user id fields
         //2 - send post request with observation id, user id, and VefificationRating =2 
         //3 - send post request with observation id, user id, and VefificationRating =3 
-
-        setVerificationRating(rating); // Update the rating state
-
+        // Update the rating state
+        setVerificationRating(rating);
+    
+        // Create the payload object
         const payload = {
             ObservationID: obs.ObservationID.S,
-            VerificationRating: rating,
+            VerificationRating: obs.VerificationRating,
             UserID: obs.UserID.S,
         };
-
-        if(verificationRating == 0){
+    
+        // Handle different rating scenarios
+        if (rating === '0') {
+            // Delete request logic
             fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(payload),
-            }) 
+            })
             .then(response => response.json())
             .then(data => {
                 setMessage("Success");
             })
             .catch((error) => {
                 setMessage("Error: " + error.message);
-            }); 
-        }
-        else if(verificationRating == 2 || verificationRating == 3){
+            });
+        } else if (rating === '2' || rating === '3') {
+            console.log("rating =2or3")
+            // Update VerificationRating in the payload
+            payload.VerificationRating = parseInt(rating);
+    
+            // Post request logic
+            console.log("CHANGING VerificationRating")
             fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
             })
             .then(response => response.json())
             .then(data => {
@@ -95,17 +104,10 @@ function Observations() {
             })
             .catch((error) => {
                 setMessage("Error: " + error.message);
-            }); 
-
-            if(verificationRating == 2){
-                obs.VerificationRating = 2;
-            }
-            else if(verificationRating = 3){
-                obs.verificationRating = 3;
-            }
-        } 
+            });
+        }
     }
-
+    
     return (
         <>
             <div>Observation {obsId + 1}</div>
