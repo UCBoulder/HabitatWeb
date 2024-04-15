@@ -13,7 +13,7 @@ const Map = () => {
       position => {
         const { latitude, longitude } = position.coords;
         leafletMap.setView([latitude, longitude], 13);
-        L.marker([latitude, longitude]).addTo(leafletMap);
+        //L.marker([latitude, longitude]).addTo(leafletMap);
       },
       error => {
         console.error('Error getting current location:', error);
@@ -30,30 +30,9 @@ const Map = () => {
     };
   }, []); // Ensure useEffect runs only once when the component mounts
 
-  const handleReturnToCurrentLocation = () => {
-    if (map) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const { latitude, longitude } = position.coords;
-          map.setView([latitude, longitude], 13);
-          L.marker([latitude, longitude]).addTo(map);
-        },
-        error => {
-          console.error('Error getting current location:', error);
-        }
-      );
-    }
-  };
-
   return (
     <div>
       <div id="map" style={{ height: '400px' }}></div>
-      <button 
-        style={{ backgroundColor: 'white', color: 'black', padding: '10px', borderRadius: '5px', border: 'none' }}
-        onClick={handleReturnToCurrentLocation}
-      >
-        Current Location
-      </button>
     </div>
   );
 };
