@@ -52,7 +52,19 @@ function Observations() {
         }
     }
 
-    function handleVerificationRating(rating) {
+    function handleVerificationRating(rating){
+        if(rating === '0'){
+            if(window.confirm('Are you sure you want to mark this as "Not Cheatgrass"?')){
+                sendVerificationRating(rating);
+                nextObservation();
+            }
+        }
+        else{
+            sendVerificationRating(rating);
+        }
+    }
+
+    function sendVerificationRating(rating) {
         //0- no 1- default 2- yes 3- maybe
         //0 - delete reqeust, send delete request with observation ID and user id fields
         //2 - send post request with observation id, user id, and VefificationRating =2 
