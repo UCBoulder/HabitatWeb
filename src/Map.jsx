@@ -13,7 +13,8 @@ const Map = () => {
       position => {
         const { latitude, longitude } = position.coords;
         leafletMap.setView([latitude, longitude], 13);
-        //L.marker([latitude, longitude]).addTo(leafletMap);
+
+        //L.marker([38.5458, -106.9253]).addTo(leafletMap);
       },
       error => {
         console.error('Error getting current location:', error);
