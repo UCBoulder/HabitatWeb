@@ -19,6 +19,9 @@ function Observations() {
                 },
                 "cover": {
                     "S":""
+                },
+                "acres":{
+                    "S":""
                 }
             }
         },
