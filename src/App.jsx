@@ -17,3 +17,4 @@ function App({ signOut, user }) {
 
 export default withAuthenticator(App, {hideSignUp: true});
 
+

@@ -58,6 +58,7 @@ function Observations() {
         }
     }
 
+
     function handleVerificationRating(rating) {
         if (rating === '0') {
             if (window.confirm('Are you sure you want to mark this as "Not Cheatgrass"?')) {
@@ -65,6 +66,7 @@ function Observations() {
                 nextObservation();
             }
         } else {
+
             sendVerificationRating(rating);
         }
     }
@@ -75,6 +77,13 @@ function Observations() {
         var o = observations;
         o.Items[obsId].VerificationRating.N = rating;
         setObservations(o);
+
+
+        //0- no 1- default 2- yes 3- maybe
+        //0 - delete reqeust, send delete request with observation ID and user id fields
+        //2 - send post request with observation id, user id, and VefificationRating =2 
+        //3 - send post request with observation id, user id, and VefificationRating =3 
+        // Update the rating state
 
         const payload = {
             ObservationID: obs.ObservationID.S,
