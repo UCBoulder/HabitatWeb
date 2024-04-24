@@ -128,6 +128,7 @@ function Observations() {
                     </div>
                     <div className="details"><b>Notes:</b> {obs.Notes.M.description.S}</div>
                     <div><b>Cover:</b> {obs.Notes.M.cover.S}</div>
+                    <div><b>Acres:</b> {obs.Notes.M.acres.S}</div>
                     <div className="message">{message}</div>
                 </div>
             </div>
