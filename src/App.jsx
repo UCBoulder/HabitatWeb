@@ -1,49 +1,19 @@
-/*import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Observations from './Observations'
-import ObservationsListPage from './ObservationsListPage'
+import { Amplify } from 'aws-amplify';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { withAuthenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
+import awsmobile from './aws-exports';
+Amplify.configure(awsmobile);
+
+function App({ signOut, user }) {
   return (
     <>
-      <Observations />
+      <h1>Hello {user.username}</h1>
+      <button onClick={signOut}>Sign out</button>
     </>
-  )
-}
-
-export default App*/
-
-// App.jsx
-/*import Map from './Map'; // Make sure the file extension is .jsx
-
-function App() {
-  return (
-    <div className="App">
-      <h1>CheatMaps</h1>
-      <Map />
-    </div>
   );
 }
 
-export default App;*/
-
-// App.jsx
-import Observations from './Observations';
-import Map from './Map';
-
-function App() {
-  return (
-    <div>
-      <Observations />
-      <Map />
-    </div>
-  );
-}
-
-export default App;
-
+export default withAuthenticator(App, {hideSignUp: true});
 
