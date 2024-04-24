@@ -59,6 +59,17 @@ function Observations() {
     }
 
     function handleVerificationRating(rating) {
+        if (rating === '0') {
+            if (window.confirm('Are you sure you want to mark this as "Not Cheatgrass"?')) {
+                sendVerificationRating(rating);
+                nextObservation();
+            }
+        } else {
+            sendVerificationRating(rating);
+        }
+    }
+
+    function sendVerificationRating(rating) {
         setVerificationRating(rating); // Update the rating state
 
         var o = observations;
@@ -84,8 +95,6 @@ function Observations() {
         .catch((error) => {
             setMessage("Error: " + error.message);
         });
-
-        nextObservation();
     }
 
     function selectedVerification(verify) {
