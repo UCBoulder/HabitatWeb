@@ -1,13 +1,12 @@
 .flex-container {
     display: flex;
     justify-content: space-between;
-    width: 100vw;
+    width: 5vw;
     overflow-wrap: break-word;
 }
 .flex-container > * {
-    margin: 0em 2em;
+    margin: 0em 1em;
 }
-
 
 .details-container {
     display: flex;
