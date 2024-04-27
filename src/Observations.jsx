@@ -27,7 +27,17 @@ function Observations() {
             }
         },
         "ObservationID": { "S": "" },
-        "VerificationRating": { "N": "1" }
+        "VerificationRating": { "N": "1" },
+        "coords": {
+            "M": {
+                "latitude": {
+                    "S":""
+                },
+                "longitude": {
+                    "S":""
+                }
+            }
+        }
     });
 
     const [obsId, setObservationId] = useState(0);
@@ -132,7 +142,7 @@ function Observations() {
     return (
         <>
             <div className="app-container">
-                <Map coordinates={{ latitude: 38.7449, longitude: -106.9329}} />
+                <Map coordinates={{ latitude: parseFloat(obs.coords.M.latitude.S), longitude: parseFloat(obs.coords.M.longitude.S)}} />
                 <div className="flex-container">
                     <img className="observation-image" src={obs.observationImageURL.S} alt="Observation"></img>
                     <div className="details-container">
