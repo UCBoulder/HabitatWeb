@@ -16,15 +16,6 @@
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
-.app-container {
-  display: flex;
-  flex-direction: row;
-}
-.map-container {
-  width: 500px;
-  margin-left: 20px;
-}
-
 
 @keyframes logo-spin {
   from {

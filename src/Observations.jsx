@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import './Observations.css';
+import Map from "./Map";
 
 function Observations() {
-    const [observations, setObservations] = useState({"Items":[]});
+    const [observations, setObservations] = useState({ "Items": [] });
 
     const [verificationRating, setVerificationRating] = useState('1'); // 1 for default rating.
 
-    const [message, setMessage] = useState(''); 
+    const [message, setMessage] = useState('');
 
     const [obs, setObs] = useState({
         "observationImageURL": {
@@ -18,30 +19,30 @@ function Observations() {
                     "S": "This is a placeholder observation"
                 },
                 "cover": {
-                    "S":""
+                    "S": ""
                 },
-                "acres":{
-                    "S":""
+                "acres": {
+                    "S": ""
                 }
             }
         },
         "ObservationID": { "S": "" },
-        "VerificationRating" : {"N":"1"} 
+        "VerificationRating": { "N": "1" }
     });
 
     const [obsId, setObservationId] = useState(0);
 
-    useEffect(() => { 
-        fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify",{
-        method: 'GET',
-        mode: 'cors',
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        setObservations(data);
-        setObs(data.Items[0]);
-    });
+    useEffect(() => {
+        fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
+            method: 'GET',
+            mode: 'cors',
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setObservations(data);
+                setObs(data.Items[0]);
+            });
     }, []);
 
     function nextObservation() {
@@ -97,13 +98,13 @@ function Observations() {
             },
             body: JSON.stringify(payload),
         })
-        .then(response => response.json())
-        .then(data => {
-            setMessage("Success");
-        })
-        .catch((error) => {
-            setMessage("Error: " + error.message);
-        });
+            .then(response => response.json())
+            .then(data => {
+                setMessage("Success");
+            })
+            .catch((error) => {
+                setMessage("Error: " + error.message);
+            });
     }
 
     function selectedVerification(verify) {
@@ -127,27 +128,30 @@ function Observations() {
                 return "Unknown";
         }
     }
-    
+
     return (
         <>
-            <div className="flex-container">
-                <img className="observation-image" src={obs.observationImageURL.S} alt="Observation"></img>
-                <div className="details-container">
-                    <div><b>Observation {obsId + 1} of {observations.Items.length}</b></div>
-                    <div><b>Current Rating: </b>{currentRating()}</div>
-                    <div className="button-group">
-                        <button className={"btn not-cheatgrass " + selectedVerification(0)} onClick={() => handleVerificationRating('0')}>Not Cheatgrass</button>
-                        <button className={"btn maybe-cheatgrass " + selectedVerification(3)} onClick={() => handleVerificationRating('3')}>Maybe Cheatgrass</button>
-                        <button className={"btn cheatgrass " + selectedVerification(2)} onClick={() => handleVerificationRating('2')}>Cheatgrass</button>
+            <div className="app-container">
+                <Map coordinates={{ latitude: 38.7449, longitude: -106.9329}} />
+                <div className="flex-container">
+                    <img className="observation-image" src={obs.observationImageURL.S} alt="Observation"></img>
+                    <div className="details-container">
+                        <div><b>Observation {obsId + 1} of {observations.Items.length}</b></div>
+                        <div><b>Current Rating: </b>{currentRating()}</div>
+                        <div className="button-group">
+                            <button className={"btn not-cheatgrass " + selectedVerification(0)} onClick={() => handleVerificationRating('0')}>Not Cheatgrass</button>
+                            <button className={"btn maybe-cheatgrass " + selectedVerification(3)} onClick={() => handleVerificationRating('3')}>Maybe Cheatgrass</button>
+                            <button className={"btn cheatgrass " + selectedVerification(2)} onClick={() => handleVerificationRating('2')}>Cheatgrass</button>
+                        </div>
+                        <div className="button-group">
+                            <button disabled={obsId == 0} onClick={prevObservation}>Previous</button>
+                            <button onClick={nextObservation}>Next</button>
+                        </div>
+                        <div className="details"><b>Notes:</b> {obs.Notes.M.description.S}</div>
+                        <div><b>Cover:</b> {obs.Notes.M.cover.S}</div>
+                        <div><b>Acres:</b> {obs.Notes.M.acres.S}</div>
+                        <div className="message">{message}</div>
                     </div>
-                    <div className="button-group">
-                        <button disabled={obsId == 0} onClick={prevObservation}>Previous</button>
-                        <button onClick={nextObservation}>Next</button>
-                    </div>
-                    <div className="details"><b>Notes:</b> {obs.Notes.M.description.S}</div>
-                    <div><b>Cover:</b> {obs.Notes.M.cover.S}</div>
-                    <div><b>Acres:</b> {obs.Notes.M.acres.S}</div>
-                    <div className="message">{message}</div>
                 </div>
             </div>
         </>
