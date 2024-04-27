@@ -1,5 +1,4 @@
 import Observations from './Observations';
-import Map from './Map';
 import './App.css';
 
 function App() {
