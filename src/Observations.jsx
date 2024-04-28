@@ -96,18 +96,25 @@ function Observations() {
         //3 - send post request with observation id, user id, and VefificationRating =3 
         // Update the rating state
 
-        const payload = {
+        /*const payload = {
             ObservationID: obs.ObservationID.S,
+            UserID: obs.UserID.S,
             VerificationRating: rating,
-        };
+        };*/
 
-        fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        })
+        if(rating === '0'){
+            const deletePayload = {
+                ObservationID: obs.ObservationID.S,
+                UserID: obs.UserID.S,
+            };
+            fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
+                method: 'DELETE',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(deletePayload),
+            })
             .then(response => response.json())
             .then(data => {
                 setMessage("Success");
@@ -115,6 +122,31 @@ function Observations() {
             .catch((error) => {
                 setMessage("Error: " + error.message);
             });
+        }
+        else if(rating === '2' || rating === '3'){
+            console.log("rating is 2 or 3");
+            const payload = {
+                ObservationID: obs.ObservationID.S,
+                UserID: obs.UserID.S,
+                VerificationRating: rating,
+            };
+
+            fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            })
+            .then(response => response.json())
+            .then(data => {
+                setMessage("Success");
+            })
+            .catch((error) => {
+                setMessage("Error: " + error.message);
+            }); 
+        }
     }
 
     function selectedVerification(verify) {
