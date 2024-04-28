@@ -44,8 +44,7 @@ function Observations() {
 
     useEffect(() => {
         fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
-            method: 'GET',
-            mode: 'cors',
+            method: 'GET'
         })
             .then(response => response.json())
             .then(data => {
@@ -96,12 +95,6 @@ function Observations() {
         //3 - send post request with observation id, user id, and VefificationRating =3 
         // Update the rating state
 
-        const payload = {
-            ObservationID: obs.ObservationID.S,
-            UserID: obs.UserID.S,
-            VerificationRating: rating,
-        };
-
         if(rating === '0'){
             const deletePayload = {
                 ObservationID: obs.ObservationID.S,
@@ -125,6 +118,11 @@ function Observations() {
         }
         else if(rating === '2' || rating === '3'){
             console.log("rating is 2 or 3");
+            const payload = {
+                ObservationID: obs.ObservationID.S,
+                UserID: obs.UserID.S,
+                VerificationRating: rating,
+            };
 
             fetch("https://lt0clq58fh.execute-api.us-east-1.amazonaws.com/Verify/Verify", {
                 method: 'POST',
