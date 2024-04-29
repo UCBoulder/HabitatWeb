@@ -1,5 +1,5 @@
 {
-  "providers": {
+  "dev": {
     "awscloudformation": {
       "AuthRoleName": "amplify-habitatweb3-dev-84518-authRole",
       "UnauthRoleArn": "arn:aws:iam::124008505402:role/amplify-habitatweb3-dev-84518-unauthRole",
