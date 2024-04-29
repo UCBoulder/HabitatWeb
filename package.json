@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.19.3",
     "@aws-amplify/ui-react": "^6.1.8",
+    "@react-google-maps/api": "^2.19.3",
     "aws-amplify": "^6.0.30",
     "leaflet": "^1.9.4",
     "prop-types": "^15.8.1",
