@@ -11,5 +11,48 @@
       "StackId": "arn:aws:cloudformation:us-east-1:124008505402:stack/amplify-habitatweb3-dev-84518/629da070-065c-11ef-9e2c-126eebc592f5",
       "AmplifyAppId": "d23k877lbqnwnc"
     }
+  },
+  "auth": {
+    "habitatweb3c625c439": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      },
+      "providerMetadata": {
+        "s3TemplateURL": "https://s3.amazonaws.com/amplify-habitatweb3-dev-84518-deployment/amplify-cfn-templates/auth/habitatweb3c625c439-cloudformation-template.json",
+        "logicalId": "authhabitatweb3c625c439"
+      },
+      "lastPushTimeStamp": "2024-04-30T00:54:36.118Z",
+      "output": {
+        "UserPoolId": "us-east-1_eRecahumK",
+        "AppClientIDWeb": "43jltmd9n7son3h0n1vukg1qhc",
+        "AppClientID": "3snqep47a7vs4a03kg11htcvri",
+        "IdentityPoolId": "us-east-1:ff856329-6bad-4c01-9bac-1310c31f191d",
+        "UserPoolArn": "arn:aws:cognito-idp:us-east-1:124008505402:userpool/us-east-1_eRecahumK",
+        "IdentityPoolName": "habitatweb3c625c439_identitypool_c625c439__dev",
+        "UserPoolName": "habitatweb3c625c439_userpool_c625c439"
+      },
+      "lastPushDirHash": "tdlCgZwBAAm73wTWkCXNFSXsW7o="
+    }
   }
 }

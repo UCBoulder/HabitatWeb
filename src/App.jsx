@@ -1,6 +1,7 @@
 import Observations from './Observations';
 import './App.css';
 import { Amplify } from 'aws-amplify';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 
 import awsmobile from './aws-exports';
@@ -17,7 +18,7 @@ function App({ signOut, user }) {
   );
 }
 
-export default App;
+export default withAuthenticator(App, {hideSignUp: true});
 
 
 

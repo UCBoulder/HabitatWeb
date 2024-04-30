@@ -10,6 +10,12 @@
       "StackName": "amplify-habitatweb3-dev-84518",
       "StackId": "arn:aws:cloudformation:us-east-1:124008505402:stack/amplify-habitatweb3-dev-84518/629da070-065c-11ef-9e2c-126eebc592f5",
       "AmplifyAppId": "d23k877lbqnwnc"
+    },
+    "categories": {
+      "auth": {
+        "HabitatWebTest": {},
+        "habitatweb3c625c439": {}
+      }
     }
   }
 }

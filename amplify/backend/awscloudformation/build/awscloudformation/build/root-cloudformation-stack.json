@@ -152,49 +152,40 @@
         }
       }
     },
-    "authHabitatWebTest": {
+    "authhabitatweb3c625c439": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-habitatwebtest-staging-e39da-deployment/amplify-cfn-templates/auth/HabitatWebTest-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-habitatweb3-dev-84518-deployment/amplify-cfn-templates/auth/habitatweb3c625c439-cloudformation-template.json",
         "Parameters": {
-          "identityPoolName": "testAuthIdentityPool",
+          "identityPoolName": "habitatweb3c625c439_identitypool_c625c439",
           "allowUnauthenticatedIdentities": false,
-          "resourceNameTruncated": "habitad4254448",
-          "userPoolName": "HabitatWebTest",
+          "resourceNameTruncated": "habitac625c439",
+          "userPoolName": "habitatweb3c625c439_userpool_c625c439",
           "autoVerifiedAttributes": "email",
           "mfaConfiguration": "OFF",
           "mfaTypes": "SMS Text Message",
           "smsAuthenticationMessage": "Your authentication code is {####}",
           "smsVerificationMessage": "Your verification code is {####}",
-          "emailVerificationSubject": "Verification code: {####}",
-          "emailVerificationMessage": "Verification code: {####}",
+          "emailVerificationSubject": "Your verification code",
+          "emailVerificationMessage": "Your verification code is {####}",
           "defaultPasswordPolicy": false,
-          "passwordPolicyMinLength": 12,
-          "passwordPolicyCharacters": "Requires Lowercase,Requires Numbers,Requires Symbols,Requires Uppercase",
-          "requiredAttributes": "",
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": "",
+          "requiredAttributes": "email",
           "aliasAttributes": "",
           "userpoolClientGenerateSecret": false,
           "userpoolClientRefreshTokenValidity": 30,
-          "userpoolClientWriteAttributes": "",
-          "userpoolClientReadAttributes": "",
-          "userpoolClientLambdaRole": "Habitad4254448_userpoolclient_lambda_role",
+          "userpoolClientWriteAttributes": "email",
+          "userpoolClientReadAttributes": "email",
+          "userpoolClientLambdaRole": "habitac625c439_userpoolclient_lambda_role",
           "userpoolClientSetAttributes": false,
-          "sharedId": "d4254448",
-          "resourceName": "HabitatWebTest",
+          "sharedId": "c625c439",
+          "resourceName": "habitatweb3c625c439",
           "authSelections": "identityPoolAndUserPool",
-          "serviceName": "Cognito",
+          "useDefault": "default",
           "usernameAttributes": "email",
-          "useDefault": "manual",
-          "userPoolGroups": false,
           "userPoolGroupList": "",
-          "adminQueries": false,
-          "thirdPartyAuth": false,
-          "authProviders": "",
-          "hostedUI": true,
-          "hostedUIDomainName": "vj81dr6nxn6s",
-          "authProvidersUserPool": "Google",
-          "hostedUIProviderMeta": "[{\"ProviderName\":\"Google\",\"authorize_scopes\":\"openid profile\",\"AttributeMapping\":{\"username\":\"sub\"}}]",
-          "oAuthMetadata": "{\"AllowedOAuthFlows\":[\"code\"],\"AllowedOAuthScopes\":[\"phone\",\"email\",\"openid\",\"profile\",\"aws.cognito.signin.user.admin\"],\"CallbackURLs\":[\"https://google.com\"],\"LogoutURLs\":[\"https://google.com\"]}",
+          "serviceName": "Cognito",
           "usernameCaseSensitive": false,
           "useEnabledMfas": true,
           "authRoleArn": {
@@ -211,8 +202,7 @@
           },
           "breakCircularDependency": true,
           "dependsOn": "",
-          "hostedUIProviderCreds": "[{\"ProviderName\":\"Google\"}]",
-          "env": "staging"
+          "env": "dev"
         }
       }
     },
@@ -220,7 +210,7 @@
       "DependsOn": [
         "AuthRole",
         "UnauthRole",
-        "authHabitatWebTest"
+        "authhabitatweb3c625c439"
       ],
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -330,7 +320,7 @@
         },
         "idpId": {
           "Fn::GetAtt": [
-            "authHabitatWebTest",
+            "authhabitatweb3c625c439",
             "Outputs.IdentityPoolId"
           ]
         },
