@@ -37,7 +37,8 @@ function Observations() {
                     "S":""
                 }
             }
-        }
+        },
+        "timestamp": { "N": ""}
     });
 
     const [obsId, setObservationId] = useState(0);
@@ -187,6 +188,10 @@ function Observations() {
                         <div className="details"><b>Notes:</b> {obs.Notes.M.description.S}</div>
                         <div><b>Cover:</b> {obs.Notes.M.cover.S}</div>
                         <div><b>Acres:</b> {obs.Notes.M.acres.S}</div>
+                        <div><b>Observation ID:</b>{obs.ObservationID.S}</div>
+                        <div><b>Longitude:</b>{obs.coords.M.longitude.S}</div>
+                        <div><b>Latidude:</b>{obs.coords.M.latitude.S}</div>
+                        <div><b>Date:</b>{obs.timestamp.N}</div>
                         <div className="message">{message}</div>
                     </div>
                 </div>
