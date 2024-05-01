@@ -42,7 +42,7 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-habitatweb3-dev-84518-deployment/amplify-cfn-templates/auth/habitatweb3c625c439-cloudformation-template.json",
         "logicalId": "authhabitatweb3c625c439"
       },
-      "lastPushTimeStamp": "2024-04-30T00:54:36.118Z",
+      "lastPushTimeStamp": "2024-04-30T19:23:53.467Z",
       "output": {
         "UserPoolId": "us-east-1_eRecahumK",
         "AppClientIDWeb": "43jltmd9n7son3h0n1vukg1qhc",
