@@ -185,10 +185,10 @@ function Observations() {
         if (isNaN(timestampMilliseconds)) {
             return "Invalid Date";
         }
-        return new Date(timestampMilliseconds).toUTCString();
+        const date = new Date(timestampMilliseconds);
+        return date.toDateString();
     }
     
-
     return (
         <>
             <div className="app-container">
