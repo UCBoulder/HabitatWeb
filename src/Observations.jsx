@@ -56,7 +56,6 @@ function Observations() {
 
                 data.Items.forEach(observation => {
                     const sanitizedURL = sanitizeURL(observation.observationImageURL.S);
-                    console.log("Sanitized Image URL: ", sanitizedURL);
                 })
             });
     }, []);
