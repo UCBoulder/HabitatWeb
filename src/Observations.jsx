@@ -37,7 +37,8 @@ function Observations() {
                     "S":""
                 }
             }
-        }
+        },
+        "timestamp": { "N": ""}
     });
 
     const [obsId, setObservationId] = useState(0);
@@ -52,8 +53,20 @@ function Observations() {
                 console.log(data);
                 setObservations(data);
                 setObs(data.Items[0]);
+
+                data.Items.forEach(observation => {
+                    const sanitizedURL = sanitizeURL(observation.observationImageURL.S);
+                })
             });
     }, []);
+
+    function sanitizeURL(url){
+        const validChars = /^[a-zA-Z0-9_:/]+$/;
+        if(!validChars.test(url)){
+            return "https://via.placeholder.com/300";
+        }
+        return url;
+    }
 
     function nextObservation() {
         if (observations.Items && obsId < observations.Items.length - 1) {
@@ -166,6 +179,15 @@ function Observations() {
         }
     }
 
+    function convertUnixTimestamp(timestamp) {
+        const timestampMilliseconds = /^\d+\.\d+$/.test(timestamp) ? parseFloat(timestamp) : parseInt(timestamp);
+        if (isNaN(timestampMilliseconds)) {
+            return "Invalid Date";
+        }
+        const date = new Date(timestampMilliseconds);
+        return date.toDateString();
+    }
+    
     return (
         <>
             <div className="app-container">
@@ -185,8 +207,12 @@ function Observations() {
                             <button onClick={nextObservation}>Next</button>
                         </div>
                         <div className="details"><b>Notes:</b> {obs.Notes.M.description.S}</div>
-                        <div><b>Cover:</b> {obs.Notes.M.cover.S}</div>
-                        <div><b>Acres:</b> {obs.Notes.M.acres.S}</div>
+                        <div><b>Cover: </b> {obs.Notes.M.cover.S}</div>
+                        <div><b>Acres: </b> {obs.Notes.M.acres.S}</div>
+                        <div><b>Observation ID: </b>{obs.ObservationID.S}</div>
+                        <div><b>Longitude: </b>{obs.coords.M.longitude.S}</div>
+                        <div><b>Latidude: </b>{obs.coords.M.latitude.S}</div>
+                        <div><b>Date: </b>{convertUnixTimestamp(obs.timestamp.S)}</div>
                         <div className="message">{message}</div>
                     </div>
                 </div>
